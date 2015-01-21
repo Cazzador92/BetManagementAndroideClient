@@ -2,8 +2,14 @@ package de.rocks.jsdevelopment.betmanagement.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -11,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.rocks.jsdevelopment.betmanagement.R;
 
@@ -24,7 +31,7 @@ import de.rocks.jsdevelopment.betmanagement.R;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class BetItemFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class BetItemFragment extends Fragment implements AbsListView.OnItemClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +90,9 @@ public class BetItemFragment extends Fragment implements AbsListView.OnItemClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_betitem, container, false);
+
+        //Es sollen Menüs genutzt werden können damit wird entsprechende Funktion aufgerufen..
+        setHasOptionsMenu(true);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
@@ -147,6 +157,35 @@ public class BetItemFragment extends Fragment implements AbsListView.OnItemClick
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+    @Override
+    public void  onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_betlist, menu);
+        //return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.CreateNewBet:
+                Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, Bet_details.newInstance("Param1","Param2"))
+                        .commit();
+                break;
+            case R.id.item2:
+                Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
@@ -19,10 +20,11 @@ import java.util.ArrayList;
 
 import de.rocks.jsdevelopment.betmanagement.adapter.NavDrawerListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.Bet_details;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 
 
-public class MainActivity extends Activity { //normal ActionBarActivity
+public class MainActivity extends Activity implements BetItemFragment.OnFragmentInteractionListener, Bet_details.OnFragmentInteractionListener{ //normal ActionBarActivity
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -130,6 +132,16 @@ public class MainActivity extends Activity { //normal ActionBarActivity
 
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
+        //liste der wetten.
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        //anlage oder bearbeitung von wetten.
+    }
+
     /**
      * Slide menu item click listener
      * */
@@ -151,10 +163,10 @@ public class MainActivity extends Activity { //normal ActionBarActivity
         Fragment fragment = null;
         switch (position) {
             case 0:
-                    //Liste der Wetten aufrufen (Startseite) später filterbar welche angezeigt werden sollen.
-                   // fragment = new BetItemFragment(); //TODO buggy...
+                   fragment = new BetItemFragment();
                 break;
             default:
+                fragment = new BetItemFragment(); //Startseite aufrufen.
                 break;
         }
 
