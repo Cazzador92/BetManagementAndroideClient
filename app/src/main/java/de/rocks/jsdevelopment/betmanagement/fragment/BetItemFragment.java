@@ -3,9 +3,7 @@ package de.rocks.jsdevelopment.betmanagement.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -175,7 +173,7 @@ public class BetItemFragment extends Fragment implements AbsListView.OnItemClick
 
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, Bet_details.newInstance("Param1","Param2"))
+                        .replace(R.id.frame_container, BetDetails.newInstance("Param1", "Param2"))
                         .commit();
                 break;
             case R.id.item2:
