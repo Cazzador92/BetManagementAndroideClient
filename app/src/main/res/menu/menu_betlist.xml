@@ -1,11 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <item android:id="@+id/CreateNewBet"
-            android:title="Wette anlegen"
+        <item android:id="@+id/action_bar_bet_add"
+            android:title="@string/action_add"
             android:icon="@drawable/ic_action_bet"
-            android:showAsAction="always"/>
-        <item android:id="@+id/item2"
-            android:title="Save"
-            android:icon="@android:drawable/ic_menu_save" />
+            android:showAsAction="ifRoom"/>
 
 </menu>

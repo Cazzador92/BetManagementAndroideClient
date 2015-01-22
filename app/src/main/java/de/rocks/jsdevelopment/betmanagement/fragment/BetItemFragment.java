@@ -168,7 +168,7 @@ public class BetItemFragment extends Fragment implements AbsListView.OnItemClick
     {
         switch (item.getItemId())
         {
-            case R.id.CreateNewBet:
+            case R.id.action_bar_bet_add:
                 Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
 
                 FragmentManager fragmentManager = getFragmentManager();
@@ -176,8 +176,14 @@ public class BetItemFragment extends Fragment implements AbsListView.OnItemClick
                         .replace(R.id.frame_container, BetDetails.newInstance("Param1", "Param2"))
                         .commit();
                 break;
-            case R.id.item2:
+            case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_bar_bet_delete:
+                Toast.makeText(getActivity(), "You selected the delete option", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_bar_bet_edit:
+                Toast.makeText(getActivity(), "You selected the edit option", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
