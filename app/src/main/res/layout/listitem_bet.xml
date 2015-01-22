@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/feed_bg"
+    android:orientation="vertical" >
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/bet_name"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textSize="@dimen/title"
+            android:textStyle="bold" />
+
+        <!-- Subscriber -->
+        <TextView
+            android:id="@+id/bet_subscriber"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/bet_name"
+            android:layout_below="@+id/bet_name"
+            android:layout_marginTop="1dip"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:textSize="@dimen/rating" />
+
+        <!--&lt;!&ndash; Start &ndash;&gt;-->
+        <!--<TextView-->
+            <!--android:id="@+id/bet_start"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_alignBottom="@+id/bet_end"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:textColor="@color/genre"-->
+            <!--android:textSize="@dimen/genre"-->
+            <!--android:layout_gravity="right" />-->
+
+        <!--&lt;!&ndash; End &ndash;&gt;-->
+        <!--<TextView-->
+            <!--android:id="@+id/bet_end"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:textColor="@color/year"-->
+            <!--android:textSize="@dimen/year"-->
+            <!--android:layout_gravity="right" />-->
+
+</LinearLayout>

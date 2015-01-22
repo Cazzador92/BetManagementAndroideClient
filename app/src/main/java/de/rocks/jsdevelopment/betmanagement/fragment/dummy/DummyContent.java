@@ -1,4 +1,4 @@
-package de.rocks.jsdevelopment.betmanagement.fragment;
+package de.rocks.jsdevelopment.betmanagement.fragment.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

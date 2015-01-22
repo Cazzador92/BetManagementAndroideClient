@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     tools:context="de.js.android.betmanagement.fragments.BetItemFragment">
 
-    <ListView android:id="@android:id/list"
+    <ListView android:id="@+id/betlist_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
-    <TextView android:id="@android:id/empty"
+    <TextView android:id="@+id/progress_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center" />

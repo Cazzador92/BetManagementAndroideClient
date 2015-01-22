@@ -3,6 +3,7 @@ package de.rocks.jsdevelopment.betmanagement;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.net.Uri;
@@ -18,17 +19,22 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import de.rocks.jsdevelopment.betmanagement.activity.SettingsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.NavDrawerListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.TestItem2Fragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.TestListFragment;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 
 
 public class MainActivity extends Activity
-        implements BetItemFragment.OnFragmentInteractionListener,
+        implements
         BetDetailsFragment.OnFragmentInteractionListener,
-        BetEditFragment.OnFragmentInteractionListener
+        BetEditFragment.OnFragmentInteractionListener,
+        TestItem2Fragment.OnFragmentInteractionListener
 { //normal ActionBarActivity
 
     private DrawerLayout mDrawerLayout;
@@ -143,13 +149,13 @@ public class MainActivity extends Activity
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
-        //liste der wetten.
+    public void onFragmentInteraction(Uri uri) {
+        //anlage oder bearbeitung von wetten.
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-        //anlage oder bearbeitung von wetten.
+    public void onFragmentInteraction(String id) {
+
     }
 
     /**
@@ -173,10 +179,16 @@ public class MainActivity extends Activity
         Fragment fragment = null;
         switch (position) {
             case 0:
-                   fragment = new BetItemFragment();
+                   fragment = new HomeFragment();
+                break;
+            case 1:
+                fragment = BetItemFragment.newInstance();
+                break;
+            case 2:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
             default:
-                fragment = new BetItemFragment(); //TODO Startseite aufrufen.
+                fragment = new HomeFragment();
                 break;
         }
 

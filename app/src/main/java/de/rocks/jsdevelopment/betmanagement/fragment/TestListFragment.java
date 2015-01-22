@@ -1,23 +1,13 @@
 package de.rocks.jsdevelopment.betmanagement.fragment;
 
+
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -28,10 +18,12 @@ import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 import de.rocks.jsdevelopment.betmanagement.model.BetSubscriber;
 
-public class BetItemFragment extends Fragment
-{
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class TestListFragment extends Fragment {
 
-    private static final String TAG = BetItemFragment.class.getSimpleName();
+    private static final String TAG = TestListFragment.class.getSimpleName();
 
     // wird vielleicht später gebraucht
     //private ProgressDialog pDialog;
@@ -39,31 +31,29 @@ public class BetItemFragment extends Fragment
     private ListView listView;
     private BetListAdapter adapter;
 
+    public TestListFragment() {
+        // Required empty public constructor
+    }
 
-    public static BetItemFragment newInstance() {
-        BetItemFragment fragment = new BetItemFragment();
+    public static TestListFragment newInstance() {
+        TestListFragment fragment = new TestListFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public BetItemFragment() {    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_betitem, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_test_list, container, false);
 
         Activity activity = getActivity();
 
         // Set the adapter
-        listView = (ListView) view.findViewById(R.id.betlist_container);
-//        List<Bet> list = getListe();
-        adapter = new BetListAdapter(activity, DummyBetContent.ITEMS);
+        listView = (ListView) view.findViewById(R.id.betlist_containertest);
+        List<Bet> list = getListe();
+        adapter = new BetListAdapter(activity, list);
         listView.setAdapter(adapter);
 
         return view;
@@ -72,11 +62,9 @@ public class BetItemFragment extends Fragment
     private List<Bet> getListe() {
         List<Bet> list = new ArrayList<>();
 
-//        for (int i = 1; i < 5; i++) {
-//            list.add(createBet(i));
-//        }
-        list.add(createBet(1));
-        list.add(createBet(2));
+        for (int i = 1; i < 5; i++) {
+            list.add(createBet(i));
+        }
         return list;
     }
 
@@ -93,12 +81,9 @@ public class BetItemFragment extends Fragment
 
         List<BetSubscriber> user = new ArrayList<BetSubscriber>();
 
-//        for (int pers = 1; i < 5; pers++) {
-//            user.add(createUser(pers));
-//        }
-
-        user.add(createUser(1));
-        user.add(createUser(2));
+        for (int pers = 1; i < 5; pers++) {
+            user.add(createUser(pers));
+        }
 
         bet.setSubscriber(user);
 
@@ -115,5 +100,6 @@ public class BetItemFragment extends Fragment
 
         return user;
     }
+
 
 }

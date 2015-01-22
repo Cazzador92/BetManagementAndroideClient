@@ -150,7 +150,7 @@ public class BetEditFragment extends Fragment {
                 Toast.makeText(getActivity(), "You selected the delete option", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetItemFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetItemFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_edit:
