@@ -1,25 +1,30 @@
 package de.rocks.jsdevelopment.betmanagement.fragment;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import de.rocks.jsdevelopment.betmanagement.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BetDetails.OnFragmentInteractionListener} interface
+ * {@link de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BetDetails#newInstance} factory method to
+ * Use the {@link de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BetDetails extends Fragment {
+public class BetDetailsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,8 +45,8 @@ public class BetDetails extends Fragment {
      * @return A new instance of fragment bet_details.
      */
     // TODO: Rename and change types and number of parameters
-    public static BetDetails newInstance(String param1, String param2) {
-        BetDetails fragment = new BetDetails();
+    public static BetDetailsFragment newInstance(String param1, String param2) {
+        BetDetailsFragment fragment = new BetDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,7 +54,7 @@ public class BetDetails extends Fragment {
         return fragment;
     }
 
-    public BetDetails() {
+    public BetDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -65,9 +70,14 @@ public class BetDetails extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bet_details, container, false);
     }
+
+
     /*
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -76,6 +86,7 @@ public class BetDetails extends Fragment {
         }
     }
 */
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -106,6 +117,57 @@ public class BetDetails extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+
+    @Override
+    public void  onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_bet_details, menu);
+        //return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        FragmentManager fragmentManager = getFragmentManager();
+
+        //TODO nur die benötigten optionen in allen Fragmenten lassen
+        switch (item.getItemId())
+        {
+            case R.id.action_bar_bet_add:
+                Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
+
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .commit();
+                break;
+            case R.id.action_bar_bet_save:
+                Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .commit();
+                break;
+            case R.id.action_bar_bet_delete:
+                Toast.makeText(getActivity(), "You selected the delete option", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, BetItemFragment.newInstance("Param1", "Param2"))
+                        .commit();
+                break;
+            case R.id.action_bar_bet_edit:
+                Toast.makeText(getActivity(), "You selected the edit option", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
+                        .commit();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

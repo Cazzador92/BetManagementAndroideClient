@@ -19,12 +19,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import de.rocks.jsdevelopment.betmanagement.adapter.NavDrawerListAdapter;
+import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
-import de.rocks.jsdevelopment.betmanagement.fragment.BetDetails;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 
 
-public class MainActivity extends Activity implements BetItemFragment.OnFragmentInteractionListener, BetDetails.OnFragmentInteractionListener{ //normal ActionBarActivity
+public class MainActivity extends Activity
+        implements BetItemFragment.OnFragmentInteractionListener,
+        BetDetailsFragment.OnFragmentInteractionListener,
+        BetEditFragment.OnFragmentInteractionListener
+{ //normal ActionBarActivity
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
