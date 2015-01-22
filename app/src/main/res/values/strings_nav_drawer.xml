@@ -5,20 +5,20 @@
     <string name="drawer_close" translatable="false">Slider Menu Closed</string>
 
     <!-- Nav Drawer Menu Items -->
+    <!-- es MUSS immer ein Titel und ein Icon vorhanden sein -->
     <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>Meine Wetten</item>
-        <item>Freunde</item>
-        <item>Gruppen</item>
-        <item>Testfragment 1</item>
-        <item>Testfragment 2</item>
-        <item>Settings</item>
+        <item>@string/nav_home</item>
+        <item>@string/nav_bets</item>
+        <item>@string/nav_settings</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
+    <!-- es MUSS immer ein Titel und ein Icon vorhanden sein -->
     <array name="nav_drawer_icons">
+        <item>@drawable/ic_action_home</item>
         <item>@drawable/ic_action_bet</item>
+        <item>@drawable/ic_action_settings</item>
     </array>
 
 </resources>

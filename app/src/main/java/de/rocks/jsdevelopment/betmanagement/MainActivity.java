@@ -96,7 +96,12 @@ public class MainActivity extends Activity
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+        // Alle Elemente die in derm Array in strings_nav_drawer.xml vorhanden sind werden hinzugefügt
+        // es MUSS immer ein Titel und ein Icon vorhanden sein
+        for (int i = 0; i < navMenuTitles.length; i++)
+        {
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[i], navMenuIcons.getResourceId(i, -1)));
+        }
 
         navMenuIcons.recycle();
 

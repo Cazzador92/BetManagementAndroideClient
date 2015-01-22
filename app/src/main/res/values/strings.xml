@@ -3,7 +3,7 @@
 
     <string name="app_name">BetManagement</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
 
     <!-- Content descriptions -->
     <string name="desc_list_item_icon" translatable="false">Item Icon</string>
@@ -15,5 +15,13 @@
     <string name="action_add">Add</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- NavigationDrawer -->
+    <string name="nav_home" translatable="false">Home</string>
+    <string name="nav_bets">Bets</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_groups">Groups</string>
+
 
 </resources>
