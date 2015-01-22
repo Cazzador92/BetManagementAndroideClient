@@ -25,16 +25,13 @@ import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
-import de.rocks.jsdevelopment.betmanagement.fragment.TestItem2Fragment;
-import de.rocks.jsdevelopment.betmanagement.fragment.TestListFragment;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 
 
 public class MainActivity extends Activity
         implements
         BetDetailsFragment.OnFragmentInteractionListener,
-        BetEditFragment.OnFragmentInteractionListener,
-        TestItem2Fragment.OnFragmentInteractionListener
+        BetEditFragment.OnFragmentInteractionListener
 { //normal ActionBarActivity
 
     private DrawerLayout mDrawerLayout;
@@ -153,10 +150,6 @@ public class MainActivity extends Activity
         //anlage oder bearbeitung von wetten.
     }
 
-    @Override
-    public void onFragmentInteraction(String id) {
-
-    }
 
     /**
      * Slide menu item click listener

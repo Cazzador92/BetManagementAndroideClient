@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +23,20 @@ import de.rocks.jsdevelopment.betmanagement.R;
 import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.dummy.DummyBetContent;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
-import de.rocks.jsdevelopment.betmanagement.model.BetSubscriber;
 
-public class BetItemFragment extends Fragment
-{
 
-    private static final String TAG = BetItemFragment.class.getSimpleName();
+/**
+ * A fragment representing a list of Items.
+ * <p/>
+ * Large screen devices (such as tablets) are supported by replacing the ListView
+ * with a GridView.
+ * <p/>
+ * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
+ * interface.
+ */
+public class BetItemFragment_bak extends Fragment implements AbsListView.OnItemClickListener{
+
+    private static final String TAG = BetItemFragment_bak.class.getSimpleName();
 
     // wird vielleicht später gebraucht
     //private ProgressDialog pDialog;
@@ -34,9 +44,10 @@ public class BetItemFragment extends Fragment
     private ListView listView;
     private BetListAdapter adapter;
 
+    private OnFragmentInteractionListener mListener;
 
-    public static BetItemFragment newInstance() {
-        BetItemFragment fragment = new BetItemFragment();
+    public static BetItemFragment_bak newInstance() {
+        BetItemFragment_bak fragment = new BetItemFragment_bak();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -46,7 +57,15 @@ public class BetItemFragment extends Fragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public BetItemFragment() {    }
+    public BetItemFragment_bak() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        adapter = new BetListAdapter(getActivity(), DummyBetContent.ITEMS);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,11 +77,67 @@ public class BetItemFragment extends Fragment
 
         // Set the adapter
         listView = (ListView) view.findViewById(R.id.betlist_container);
-//        List<Bet> list = getListe();
-        adapter = new BetListAdapter(activity, DummyBetContent.ITEMS);
         listView.setAdapter(adapter);
 
+        // Set OnItemClickListener so we can be notified on item clicks
+        listView.setOnItemClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != mListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            mListener.onFragmentInteraction(DummyBetContent.ITEMS.get(position).id);
+        }
+    }
+
+    /**
+     * The default content for this Fragment has a TextView that is shown when
+     * the list is empty. If you would like to change the text, call this method
+     * to supply the text it should use.
+     */
+    public void setEmptyText(CharSequence emptyText) {
+        View emptyView = listView.getEmptyView();
+
+        if (emptyView instanceof TextView) {
+            ((TextView) emptyView).setText(emptyText);
+        }
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(String id);
     }
 
     @Override
@@ -70,7 +145,6 @@ public class BetItemFragment extends Fragment
         inflater.inflate(R.menu.menu_betlist, menu);
         //return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -85,7 +159,7 @@ public class BetItemFragment extends Fragment
 
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
@@ -116,16 +190,4 @@ public class BetItemFragment extends Fragment
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
-    public void setEmptyText(CharSequence emptyText) {
-        View emptyView = listView.getEmptyView();
-
-        if (emptyView instanceof TextView) {
-            ((TextView) emptyView).setText(emptyText);
-        }
-    }
 }
