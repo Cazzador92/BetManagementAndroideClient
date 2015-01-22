@@ -4,6 +4,8 @@
             android:title="Wette anlegen"
             android:icon="@drawable/ic_action_bet"
             android:showAsAction="always"/>
-        <item android:id="@+id/item2" android:title="Save" android:icon="@android:drawable/ic_menu_save" />
+        <item android:id="@+id/item2"
+            android:title="Save"
+            android:icon="@android:drawable/ic_menu_save" />
 
 </menu>
