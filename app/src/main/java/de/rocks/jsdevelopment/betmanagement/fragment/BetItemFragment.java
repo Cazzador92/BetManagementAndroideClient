@@ -30,6 +30,7 @@ public class BetItemFragment extends Fragment
 
     //TODO 3 langer click später
 
+
     private static final String TAG = BetItemFragment.class.getSimpleName();
 
     // wird vielleicht später gebraucht
