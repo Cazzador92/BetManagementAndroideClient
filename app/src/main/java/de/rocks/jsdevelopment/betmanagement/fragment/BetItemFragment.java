@@ -3,6 +3,7 @@ package de.rocks.jsdevelopment.betmanagement.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,14 +20,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.rocks.jsdevelopment.betmanagement.MainActivity;
 import de.rocks.jsdevelopment.betmanagement.R;
+import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.dummy.DummyBetContent;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
-import de.rocks.jsdevelopment.betmanagement.model.BetSubscriber;
 
-public class BetItemFragment extends Fragment
-{
+public class BetItemFragment extends Fragment implements AdapterView.OnItemClickListener{
 
     //TODO 1 Click auf die Elemente soll die BetDetailsActivity aufrufen und das Element übergeben
 
@@ -39,6 +42,21 @@ public class BetItemFragment extends Fragment
     private ListView listView;
     private BetListAdapter adapter;
 
+    private OnFragmentInteractionListener mListener;
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != mListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            mListener.onFragmentInteraction(DummyBetContent.ITEMS.get(position));
+        }
+    }
+
+
+    public interface OnFragmentInteractionListener {
+        public void onFragmentInteraction(Bet item);
+    }
 
     public static BetItemFragment newInstance() {
         BetItemFragment fragment = new BetItemFragment();
@@ -67,6 +85,7 @@ public class BetItemFragment extends Fragment
         adapter = new BetListAdapter(activity, DummyBetContent.ITEMS);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(this);
         return view;
     }
 
@@ -97,14 +116,14 @@ public class BetItemFragment extends Fragment
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
                 Toast.makeText(getActivity(), "You selected the delete option", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetItemFragment_bak.newInstance())
+                        .replace(R.id.frame_container, BetItemFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_edit:
@@ -133,4 +152,22 @@ public class BetItemFragment extends Fragment
             ((TextView) emptyView).setText(emptyText);
         }
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
 }

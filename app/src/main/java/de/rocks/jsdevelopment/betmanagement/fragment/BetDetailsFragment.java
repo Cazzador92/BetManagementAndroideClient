@@ -40,16 +40,12 @@ public class BetDetailsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment bet_details.
      */
     // TODO: Rename and change types and number of parameters
-    public static BetDetailsFragment newInstance(String param1, String param2) {
+    public static BetDetailsFragment newInstance() {
         BetDetailsFragment fragment = new BetDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -139,14 +135,14 @@ public class BetDetailsFragment extends Fragment {
 
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:

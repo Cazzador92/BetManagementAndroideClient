@@ -16,22 +16,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
 import de.rocks.jsdevelopment.betmanagement.activity.SettingsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.NavDrawerListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
+import de.rocks.jsdevelopment.betmanagement.model.Bet;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 
 
 public class MainActivity extends Activity
         implements
         BetDetailsFragment.OnFragmentInteractionListener,
-        BetEditFragment.OnFragmentInteractionListener
+        BetEditFragment.OnFragmentInteractionListener,
+        BetItemFragment.OnFragmentInteractionListener
 { //normal ActionBarActivity
 
     private DrawerLayout mDrawerLayout;
@@ -47,6 +51,9 @@ public class MainActivity extends Activity
 
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
+
+    static final int PICK_BET_REQUEST = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +156,26 @@ public class MainActivity extends Activity
     public void onFragmentInteraction(Uri uri) {
         //anlage oder bearbeitung von wetten.
     }
+
+    @Override
+    public void onFragmentInteraction(Bet item) {
+        //Toast.makeText(this, "main", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, BetDetailsActivity.class);
+        intent.putExtra("Bet", item);
+        startActivityForResult(intent, PICK_BET_REQUEST);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        if (requestCode == PICK_BET_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                // A contact was picked.  Here we will just display it
+                // to the user.
+                data.getExtras();
+            }
+        }
+    }
+
 
 
     /**

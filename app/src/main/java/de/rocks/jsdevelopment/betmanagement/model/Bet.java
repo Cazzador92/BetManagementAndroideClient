@@ -1,5 +1,13 @@
 package de.rocks.jsdevelopment.betmanagement.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +15,9 @@ import java.util.List;
 //import org.apache.commons.lang3.builder.HashCodeBuilder;
 //import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Bet {
+public class Bet
+    implements Serializable
+{
 
     public String id;
     public String owner;
@@ -18,32 +28,47 @@ public class Bet {
     public List<BetSubscriber> subscriber = new ArrayList<BetSubscriber>();
     public String description;
 
-
-//    @Override
-//    public String toString() {
-//        return ToStringBuilder.reflectionToString(this);
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        return new HashCodeBuilder().append(id).append(owner).append(name).append(start).append(end).append(deadline).append(subscriber).append(description).toHashCode();
+//    private Bet(Parcel in){
+//        id = in.readString();
+//        name = in.readString();
+//        description = in.readString();
 //    }
 //
-//    @Override
-//    public boolean equals(Object other) {
-//        if (other == this) {
-//            return true;
-//        }
-//        if ((other instanceof Bet) == false) {
-//            return false;
-//        }
-//        Bet rhs = ((Bet) other);
-//        return new EqualsBuilder().append(id, rhs.id).append(owner, rhs.owner).append(name, rhs.name).append(start, rhs.start).append(end, rhs.end).append(deadline, rhs.deadline).append(subscriber, rhs.subscriber).append(description, rhs.description).isEquals();
+//    public Bet(){
 //    }
+//
+//    public static final Parcelable
+//            .Creator<Bet> CREATOR =
+//            new Parcelable.Creator<Bet>() {
+//                public Bet createFromParcel(Parcel in) {
+//                    return new Bet(in);
+//                }
+//
+//                public Bet[] newArray(int size) {
+//                    return new Bet[size];
+//                }
+//            };
 
     @Override
     public String toString() {
-        return name;
+        return ToStringBuilder.reflectionToString(this);
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(id).append(owner).append(name).append(start).append(end).append(deadline).append(subscriber).append(description).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof Bet) == false) {
+            return false;
+        }
+        Bet rhs = ((Bet) other);
+        return new EqualsBuilder().append(id, rhs.id).append(owner, rhs.owner).append(name, rhs.name).append(start, rhs.start).append(end, rhs.end).append(deadline, rhs.deadline).append(subscriber, rhs.subscriber).append(description, rhs.description).isEquals();
     }
 
 
@@ -205,4 +230,16 @@ public class Bet {
         this.description = description;
     }
 
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//
+//        dest.writeString(id);
+//        dest.writeString(name);
+//        dest.writeString(description);
+//    }
 }

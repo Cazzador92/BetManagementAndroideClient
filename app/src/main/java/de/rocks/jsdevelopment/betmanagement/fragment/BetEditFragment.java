@@ -136,14 +136,14 @@ public class BetEditFragment extends Fragment {
 
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
