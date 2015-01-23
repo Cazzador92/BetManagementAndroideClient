@@ -73,13 +73,9 @@ public class BetDetailsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         if (mParam1.id != null){
-            fill    Ŷ<<<<<<<<<<<<<<<<<<<<<<<<AFields(view);
+            fillFields(view);
             setFieldsEnabled(view, false);
         }
-
-
-
-
         return view;
     }
 
