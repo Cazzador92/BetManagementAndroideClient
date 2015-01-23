@@ -72,6 +72,9 @@ public class BetDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bet_details, container, false);
         setHasOptionsMenu(true);
 
+        //TODO prüfen warum die Labels bei den FloatLabels nicht angezeigt werden
+        // (alternativ auf etwas anderes ausweichen)
+
         if (mParam1.id != null){
             fillFields(view);
             setFieldsEnabled(view, false);
