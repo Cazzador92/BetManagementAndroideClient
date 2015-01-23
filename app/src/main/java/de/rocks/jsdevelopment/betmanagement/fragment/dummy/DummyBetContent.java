@@ -31,7 +31,7 @@ public class DummyBetContent {
 
     static {
         // Add 4 sample items.
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 15; i++) {
             addItem(createBet(i));
         }
     }
@@ -44,21 +44,16 @@ public class DummyBetContent {
         bet.setOwner("1");
         bet.setId(""+i);
 
-        // Wie funktioniert es?!
+        //TODO Wie funktioniert Date?!
 //        bet.setDeadline(Date.valueOf("21.01.2015"));
 //        bet.setStart(Date.valueOf("23.01.2015"));
 //        bet.setEnd(Date.valueOf("29.01.2015"));
 //
         List<BetSubscriber> user = new ArrayList<BetSubscriber>();
 
-        // Fliegt hier raus
-//        for (int pers = 1; i < 5; pers++) {
-//            user.add(createUser(pers));
-//        }
-
-        user.add(createUser(1));
-        user.add(createUser(2));
-        user.add(createUser(3));
+        for (int pers = 1; pers < 5; pers++) {
+            user.add(createUser(pers));
+        }
 
         bet.setSubscriber(user);
 

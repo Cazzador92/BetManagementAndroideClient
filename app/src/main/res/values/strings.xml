@@ -4,11 +4,9 @@
     <string name="app_name">BetManagement</string>
     <string name="hello_world">Hello world!</string>
 
-
     <!-- Content descriptions -->
     <string name="desc_list_item_icon" translatable="false">Item Icon</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
     <!-- Menu -->
     <string name="action_save">Save</string>
@@ -22,6 +20,6 @@
     <string name="nav_bets">Bets</string>
     <string name="nav_settings">Settings</string>
     <string name="nav_groups">Groups</string>
-
+    <string name="title_activity_bet_details">BetDetailsActivity</string>
 
 </resources>
