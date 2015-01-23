@@ -26,9 +26,9 @@ import de.rocks.jsdevelopment.betmanagement.model.BetSubscriber;
 public class BetItemFragment extends Fragment
 {
 
-    //TODO Click auf die Elemente soll die BetDetailsActivity aufrufen und das Element übergeben
+    //TODO 1 Click auf die Elemente soll die BetDetailsActivity aufrufen und das Element übergeben
 
-    //TODO langer click später
+    //TODO 3 langer click später
 
     private static final String TAG = BetItemFragment.class.getSimpleName();
 
