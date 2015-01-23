@@ -22,4 +22,12 @@
     <string name="nav_groups">Groups</string>
     <string name="title_activity_bet_details">BetDetailsActivity</string>
 
+
+    <!-- Betdetails -->
+    <string name="betdetails_label_name">Name</string>
+    <string name="betdetails_label_start">Start</string>
+    <string name="betdetails_label_end">End</string>
+    <string name="betdetails_label_subscriber">Subscriber</string>
+    <string name="betdetails_label_deadline">Deadline</string>
+    <string name="betdetails_label_description">Description</string>
 </resources>

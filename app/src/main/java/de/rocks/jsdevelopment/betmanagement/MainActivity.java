@@ -162,19 +162,19 @@ public class MainActivity extends Activity
         //Toast.makeText(this, "main", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, BetDetailsActivity.class);
         intent.putExtra("Bet", item);
-        startActivityForResult(intent, PICK_BET_REQUEST);
+        startActivity(intent);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
-        if (requestCode == PICK_BET_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                // A contact was picked.  Here we will just display it
-                // to the user.
-                data.getExtras();
-            }
-        }
-    }
+//    protected void onActivityResult(int requestCode, int resultCode,
+//                                    Intent data) {
+//        if (requestCode == PICK_BET_REQUEST) {
+//            if (resultCode == RESULT_OK) {
+//                // A contact was picked.  Here we will just display it
+//                // to the user.
+//                data.getExtras();
+//            }
+//        }
+//    }
 
 
 
@@ -216,6 +216,7 @@ public class MainActivity extends Activity
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_container, fragment)
+                    .addToBackStack(null)       //wird alles nacheinander auf den Stack gelegt
                     .commit();
 
             // update selected item and title, then close the drawer

@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.wrapp.floatlabelededittext:library:0.0.5'
 }

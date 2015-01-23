@@ -3,7 +3,6 @@ package de.rocks.jsdevelopment.betmanagement.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,9 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.rocks.jsdevelopment.betmanagement.MainActivity;
 import de.rocks.jsdevelopment.betmanagement.R;
-import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.dummy.DummyBetContent;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
@@ -114,9 +110,9 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
-
+                Bet bet = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import de.rocks.jsdevelopment.betmanagement.R;
+import de.rocks.jsdevelopment.betmanagement.model.Bet;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -134,16 +135,16 @@ public class BetEditFragment extends Fragment {
             case R.id.action_bar_bet_add:
                 Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
 
-
+                Bet bet = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet))
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
-
+                Bet bet2 = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet2))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:

@@ -18,4 +18,10 @@
     <string name="nav_bets">Meine Wetten</string>
     <string name="nav_groups">Gruppen</string>
     <string name="nav_settings">Einstellungen</string>
+    <string name="betdetails_label_name">Name</string>
+    <string name="betdetails_label_start">Start</string>
+    <string name="betdetails_label_subscriber">Teilnehmer</string>
+    <string name="betdetails_label_end">Ende</string>
+    <string name="betdetails_label_description">Beschreibung</string>
+    <string name="betdetails_label_deadline">Wetannahmeende</string>
 </resources>

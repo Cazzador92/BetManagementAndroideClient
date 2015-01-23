@@ -11,9 +11,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wrapp.floatlabelededittext.FloatLabeledEditText;
+
 import de.rocks.jsdevelopment.betmanagement.R;
+import de.rocks.jsdevelopment.betmanagement.model.Bet;
 
 
 /**
@@ -25,15 +30,11 @@ import de.rocks.jsdevelopment.betmanagement.R;
  * create an instance of this fragment.
  */
 public class BetDetailsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-//
+    private Bet mParam1;
+
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -41,11 +42,12 @@ public class BetDetailsFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @return A new instance of fragment bet_details.
+     * @param bet
      */
-    // TODO: Rename and change types and number of parameters
-    public static BetDetailsFragment newInstance() {
+    public static BetDetailsFragment newInstance(Bet bet) {
         BetDetailsFragment fragment = new BetDetailsFragment();
         Bundle args = new Bundle();
+        args.putSerializable(ARG_PARAM1, bet);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +60,7 @@ public class BetDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = (Bet) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -67,21 +68,45 @@ public class BetDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_bet_details, container, false);
         setHasOptionsMenu(true);
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bet_details, container, false);
+        if (mParam1.id != null){
+            fillFields(view);
+        }
+
+
+
+
+        return view;
     }
 
+    private void fillFields(View view) {
 
-    /*
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        if (mParam1.name != null) {
+            TextView name = (TextView) view.findViewById(R.id.betdetails_name);
+
+            name.setText(mParam1.getName());
+            name.setEnabled(false);
+        }
+        //FloatLabeledEditText container = (FloatLabeledEditText) getView().findViewById(R.id.container_name);
+
+        if (mParam1.description != null) {
+            EditText description = (EditText) view.findViewById(R.id.betdetails_description);
+            description.setText(mParam1.getDescription());
+            description.setEnabled(false);
         }
     }
-*/
+
+
+//    // TODO: Rename method, update argument and hook method into UI event
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -133,16 +158,16 @@ public class BetDetailsFragment extends Fragment {
             case R.id.action_bar_bet_add:
                 Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
 
-
+                Bet bet = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet))
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
-
+                Bet bet2 = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance())
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet2))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
