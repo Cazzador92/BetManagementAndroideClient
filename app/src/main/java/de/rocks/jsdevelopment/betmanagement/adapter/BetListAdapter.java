@@ -55,15 +55,15 @@ public class BetListAdapter extends BaseAdapter {
 
         TextView name = (TextView) convertView.findViewById(R.id.bet_name);
         TextView subscriber = (TextView) convertView.findViewById(R.id.bet_subscriber);
-//        TextView start = (TextView) convertView.findViewById(R.id.bet_start);
-//        TextView end = (TextView) convertView.findViewById(R.id.bet_end);
+        TextView start = (TextView) convertView.findViewById(R.id.bet_start);
+        TextView end = (TextView) convertView.findViewById(R.id.bet_end);
 
         Bet bet = betItems.get(position);
 
         name.setText(bet.getName());
         subscriber.setText(bet.getSubscriberList());
-//        start.setText(bet.getStart().toString());
-//        end.setText(bet.getEnd().toString());
+        start.setText("21.01.2015");
+        end.setText("25.01.2015");
 
         return convertView;
     }

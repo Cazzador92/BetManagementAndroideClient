@@ -6,13 +6,11 @@
     tools:context="de.js.android.betmanagement.fragments.BetItemFragment">
 
     <ListView android:id="@+id/betlist_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/list_divider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector"
         />
-
-    <TextView android:id="@+id/progress_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center" />
 
 </FrameLayout>

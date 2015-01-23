@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="list_item_title">#fff</color>
-    <color name="list_background">#303030</color>
-    <color name="list_background_pressed">#992416</color>
-    <!--<color name="list_divider">#272727</color>-->
-    <color name="counter_text_bg">#626262</color>
-    <color name="counter_text_color">#c5c4c4</color>
+    <!-- ListView Items -->
+    <color name="list_item_title">#626262</color>
+    <color name="list_item_subscriber">#626262</color>
+    <color name="list_item_start">#c5c4c4</color>
+    <color name="list_item_end">#c5c4c4</color>
 
-    <!-- test ListView -->
-    <color name="genre">#666666</color>
-    <color name="year">#888888</color>
-    <color name="list_divider">#d9d9d9</color>
-    <color name="list_row_start_color">#ffffff</color>
-    <color name="list_row_end_color">#ffffff</color>
-    <color name="list_row_hover_start_color">#ebeef0</color>
-    <color name="list_row_hover_end_color">#ebeef0</color>
 
-    <!-- test Facebook Like ListView -->
-    <color name="white">#ffffff</color>
-    <color name="feed_bg">#d3d6db</color>
-    <color name="feed_item_bg">#ffffff</color>
-    <color name="feed_item_border">#c2c3c8</color>
-    <color name="link">#0a80d1</color>
-    <color name="timestamp">#a0a3a7</color>
+
+    <!-- ListView -->
+        <color name="list_background">#870f0f1f</color>
+        <color name="list_background_pressed">#992416</color>
+        <color name="list_divider">#d9d9d9</color>
+        <color name="list_row_start_color">#ffd0f5ff</color>
+        <color name="list_row_end_color">#ffb9ffd4</color>
+        <color name="list_row_hover_start_color">#ffffbebe</color>
+        <color name="list_row_hover_end_color">#fff073ac</color>
+        <color name="white">#ffffff</color>
+        <color name="list_bg">#d3d6db</color>
+        <color name="list_item_bg">#ffffff</color>
+        <color name="list_item_border">#c2c3c8</color>
+        <color name="link">#0a80d1</color>
+        <color name="timestamp">#a0a3a7</color>
+    <!-- ListView -->
+
+    <!-- NavDrawer -->
+        <color name="nav_background">#870f0f1f</color>
+        <color name="nav_background_pressed">#992416</color>
+        <color name="nav_divider">#d9d9d9</color>
+        <color name="nav_row_start_color">#ffffff</color>
+        <color name="nav_row_end_color">#ffffff</color>
+        <color name="nav_row_hover_start_color">#ebeef0</color>
+        <color name="nav_row_hover_end_color">#ebeef0</color>
+        <!-- Items -->
+        <color name="nav_item_title">#fff</color>
+        <color name="counter_text_bg">#626262</color>
+        <color name="counter_text_color">#c5c4c4</color>
+    <!-- /NavDrawer -->
 </resources>

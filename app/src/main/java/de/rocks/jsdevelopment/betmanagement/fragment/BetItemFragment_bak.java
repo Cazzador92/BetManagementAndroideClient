@@ -3,6 +3,7 @@ package de.rocks.jsdevelopment.betmanagement.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,7 +20,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.rocks.jsdevelopment.betmanagement.MainActivity;
 import de.rocks.jsdevelopment.betmanagement.R;
+import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.dummy.DummyBetContent;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
@@ -158,9 +161,8 @@ public class BetItemFragment_bak extends Fragment implements AbsListView.OnItemC
                 Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
 
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance("Param1", "Param2"))
-                        .commit();
+                startActivity(new Intent(getActivity(), BetDetailsActivity.class));
+
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
