@@ -73,7 +73,7 @@ public class BetDetailsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         if (mParam1.id != null){
-            fillFields(view);
+            fill    Ŷ<<<<<<<<<<<<<<<<<<<<<<<<AFields(view);
             setFieldsEnabled(view, false);
         }
 
@@ -103,13 +103,14 @@ public class BetDetailsFragment extends Fragment {
      * @param b
      * @param betdetails_name
      */
-    private void setFieldEnabled(View view, boolean b, int betdetails_name) {
-        TextView name = (TextView) view.findViewById(R.id.betdetails_name);
-        name.setEnabled(b);
+    private void setFieldEnabled(View view, boolean b, int id) {
+        TextView element = (TextView) view.findViewById(id);
+        element.setEnabled(b);
     }
 
     private void fillFields(View view) {
 
+        //TODO parameter übergeben
         if (mParam1.name != null) {
             TextView name = (TextView) view.findViewById(R.id.betdetails_name);
 
