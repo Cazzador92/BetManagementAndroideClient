@@ -1,6 +1,8 @@
 package de.rocks.jsdevelopment.betmanagement.fragment.dummy;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,10 +47,16 @@ public class DummyBetContent {
         bet.setId(""+i);
 
         //TODO Wie funktioniert Date?!
-//        bet.setDeadline(Date.valueOf("21.01.2015"));
-//        bet.setStart(Date.valueOf("23.01.2015"));
-//        bet.setEnd(Date.valueOf("29.01.2015"));
-//
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            bet.setDeadline(sdf.parse("21.01.2015"));
+            bet.setStart(sdf.parse("23.01.2015"));
+            bet.setEnd(sdf.parse("25.01.2015"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
         List<BetSubscriber> user = new ArrayList<BetSubscriber>();
 
         for (int pers = 1; pers < 5; pers++) {

@@ -74,6 +74,7 @@ public class BetDetailsFragment extends Fragment {
 
         if (mParam1.id != null){
             fillFields(view);
+            setFieldsEnabled(view, false);
         }
 
 
@@ -82,20 +83,43 @@ public class BetDetailsFragment extends Fragment {
         return view;
     }
 
+    /**
+     * set all Fields on BetDetailsFragment like b
+     * @param view
+     * @param b
+     */
+    private void setFieldsEnabled(View view, boolean b) {
+        setFieldEnabled(view, b, R.id.betdetails_name);
+        setFieldEnabled(view, b, R.id.betdetails_start);
+        setFieldEnabled(view, b, R.id.betdetails_end);
+        setFieldEnabled(view, b, R.id.betdetails_subscriber);
+        setFieldEnabled(view, b, R.id.betdetails_deadline);
+        setFieldEnabled(view, b, R.id.betdetails_description);
+    }
+
+    /**
+     * set 1 field enable like b
+     * @param view
+     * @param b
+     * @param betdetails_name
+     */
+    private void setFieldEnabled(View view, boolean b, int betdetails_name) {
+        TextView name = (TextView) view.findViewById(R.id.betdetails_name);
+        name.setEnabled(b);
+    }
+
     private void fillFields(View view) {
 
         if (mParam1.name != null) {
             TextView name = (TextView) view.findViewById(R.id.betdetails_name);
 
             name.setText(mParam1.getName());
-            name.setEnabled(false);
         }
         //FloatLabeledEditText container = (FloatLabeledEditText) getView().findViewById(R.id.container_name);
 
         if (mParam1.description != null) {
             EditText description = (EditText) view.findViewById(R.id.betdetails_description);
             description.setText(mParam1.getDescription());
-            description.setEnabled(false);
         }
     }
 
