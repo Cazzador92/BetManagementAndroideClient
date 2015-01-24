@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import de.rocks.jsdevelopment.betmanagement.R;
 
@@ -16,16 +17,16 @@ import de.rocks.jsdevelopment.betmanagement.R;
 public class DatePicker extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
     Calendar c = Calendar.getInstance();
-    int startYear = c.get(Calendar.YEAR);
-    int startMonth = c.get(Calendar.MONTH);
-    int startDay = c.get(Calendar.DAY_OF_MONTH);
+    int Year = c.get(Calendar.YEAR);
+    int Month = c.get(Calendar.MONTH);
+    int Day = c.get(Calendar.DAY_OF_MONTH);
 
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         // Use the current date as the default date in the picker
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, startYear, startMonth, startDay);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, Year, Month, Day);
 
         return dialog;
     }
@@ -36,14 +37,28 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
                           int dayOfMonth) {
         // TODO Auto-generated method stub
         // Do something with the date chosen by the user
-        startYear = year;
-        startMonth = monthOfYear;
-        startDay = dayOfMonth;
+        this.Year = year;
+        this.Month = monthOfYear;
+        this.Day = dayOfMonth;
        // updateStartDateDisplay();
 
-        //TODO JF Funktioniert nicht!
         EditText start = (EditText) getActivity().findViewById(R.id.betdetails_start);
-        String date = dayOfMonth + "." + monthOfYear + "." + year;
+        String date = year + "." + monthOfYear + "." + dayOfMonth;
         start.setText(date);
+    }
+
+    /**
+     * Date is deprecated, using Calendar.
+     * @return cal
+     */
+    public Calendar getCalendar()
+    {
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(Calendar.YEAR, Year);
+        cal.set(Calendar.MONTH, Month);
+        cal.set(Calendar.DAY_OF_MONTH, Day);
+
+        return cal;
     }
 }

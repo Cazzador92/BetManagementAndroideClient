@@ -105,7 +105,6 @@ public class BetDetailsFragment extends Fragment {
                     Toast.makeText(getActivity(),"Get Focus",Toast.LENGTH_SHORT);
                     DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
                     dialogFragment.show(getFragmentManager(), "OpenDatePicker");
-
                 }
             }
         });
