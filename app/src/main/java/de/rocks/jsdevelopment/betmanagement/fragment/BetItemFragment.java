@@ -3,6 +3,7 @@ package de.rocks.jsdevelopment.betmanagement.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.rocks.jsdevelopment.betmanagement.R;
+import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
+import de.rocks.jsdevelopment.betmanagement.activity.SettingsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.dummy.DummyBetContent;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
@@ -97,7 +100,7 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
     {
         FragmentManager fragmentManager = getFragmentManager();
 
-        //TODO nur die benötigten optionen in allen Fragmenten lassen
+        //TODO Diese auswahl in die Activity auslagern
         switch (item.getItemId())
         {
             case R.id.action_bar_bet_add:
@@ -107,15 +110,20 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
               //  fragmentManager.beginTransaction()
                 //          .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
                 //      .commit();
-                BetDetailsFragment fra = BetDetailsFragment.newInstance(new Bet());
-                //fra.showStartDateDialog(getActivity()); -> Möglichkeit 1
+//                BetDetailsFragment fra = BetDetailsFragment.newInstance(new Bet());
+//                //fra.showStartDateDialog(getActivity()); -> Möglichkeit 1
+//
+//                if (fra.getView() != null){
+//                    //fra.CreateSpecialTextFields(fra.getView());
+//                }
+//
+//                fragmentManager.beginTransaction().replace(R.id.frame_container, fra).commit();
 
-                if (fra.getView() != null){
-                    //fra.CreateSpecialTextFields(fra.getView());
-                }
 
-                fragmentManager.beginTransaction().replace(R.id.frame_container, fra).commit();
-
+                //Neue leere Wette erstellen und Activity starten
+                Intent intent = new Intent(getActivity(), BetDetailsActivity.class);
+                intent.putExtra("Bet", new Bet());
+                startActivity(intent);
 
                 break;
             case R.id.action_bar_bet_save:
