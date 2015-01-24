@@ -4,9 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import java.util.Calendar;
+
+import de.rocks.jsdevelopment.betmanagement.R;
 
 /**
  * Created by Cazza on 24.01.2015.
@@ -37,5 +39,9 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
             startMonth = monthOfYear;
             startDay = dayOfMonth;
            // updateStartDateDisplay();
+
+            //TODO JF Funktioniert nicht!
+            EditText start = (EditText) view.findViewById(R.id.betdetails_start);
+            start.setText(dayOfMonth + "." + monthOfYear + "." + year);
         }
 }

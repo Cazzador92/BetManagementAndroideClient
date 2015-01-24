@@ -104,7 +104,7 @@ public class BetDetailsFragment extends Fragment implements DatePickerDialog.OnD
                 if (hasFocus) {
                     Toast.makeText(getActivity(),"Get Focus",Toast.LENGTH_SHORT);
                     DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
-                    dialogFragment.show(getFragmentManager(), "start_date_picker");
+                    dialogFragment.show(getFragmentManager(), "OpenDatePicker");
                 }
             }
         });
