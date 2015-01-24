@@ -1,6 +1,8 @@
 package de.rocks.jsdevelopment.betmanagement.fragment;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.net.Uri;
@@ -11,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +32,11 @@ import de.rocks.jsdevelopment.betmanagement.model.Bet;
  * Use the {@link de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BetDetailsFragment extends Fragment {
+public class BetDetailsFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "mBet";
 
-    private Bet mParam1;
+    private Bet mBet;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,13 +57,15 @@ public class BetDetailsFragment extends Fragment {
 
     public BetDetailsFragment() {
         // Required empty public constructor
+      //  CreateSpecialTextFields();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = (Bet) getArguments().getSerializable(ARG_PARAM1);
+            mBet = (Bet) getArguments().getSerializable(ARG_PARAM1);
+
         }
     }
 
@@ -72,54 +77,108 @@ public class BetDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bet_details, container, false);
         setHasOptionsMenu(true);
 
+        CreateSpecialTextFields(view);
+
         //TODO prüfen warum die Labels bei den FloatLabels nicht angezeigt werden
         // (alternativ auf etwas anderes ausweichen)
 
-        if (mParam1.id != null){
+        if (mBet.id != null){
             fillFields(view);
             setFieldsEnabled(view, false);
         }
+
         return view;
+    }
+
+    public void showStartDateDialog(Activity activity){
+        DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
+        dialogFragment.show(getFragmentManager(), "start_date_picker");
+        /*if (activity != null) {
+            DatePickerDialog dialog = new DatePickerDialog(activity, this, 2015, 01, 25);
+            dialog.show();
+        }else{
+            Toast.makeText(activity,"nix aktivity",Toast.LENGTH_SHORT);
+        }
+        */
+    }
+
+
+    /**
+     * Create the Datetimepicker for the start and end date of the bet.
+     */
+    public void CreateSpecialTextFields(View view)
+    {
+        TextView start = (TextView) view.findViewById(R.id.betdetails_start);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"text onclick",Toast.LENGTH_SHORT);
+                DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
+                //dialogFragment.show(getFragmentManager(), "DatePicker");
+                dialogFragment.show(getFragmentManager(), "start_date_picker");
+            }
+        });
     }
 
     /**
      * set all Fields on BetDetailsFragment like b
      * @param view
-     * @param b
+     * @param IsEnabled
      */
-    private void setFieldsEnabled(View view, boolean b) {
-        setFieldEnabled(view, b, R.id.betdetails_name);
-        setFieldEnabled(view, b, R.id.betdetails_start);
-        setFieldEnabled(view, b, R.id.betdetails_end);
-        setFieldEnabled(view, b, R.id.betdetails_subscriber);
-        setFieldEnabled(view, b, R.id.betdetails_deadline);
-        setFieldEnabled(view, b, R.id.betdetails_description);
+    private void setFieldsEnabled(View view, boolean IsEnabled) {
+        setFieldEnabled(view, IsEnabled, R.id.betdetails_name);
+        setFieldEnabled(view, IsEnabled, R.id.betdetails_start);
+        setFieldEnabled(view, IsEnabled, R.id.betdetails_end);
+        setFieldEnabled(view, IsEnabled, R.id.betdetails_subscriber);
+        setFieldEnabled(view, IsEnabled, R.id.betdetails_deadline);
+        setFieldEnabled(view, IsEnabled, R.id.betdetails_description);
     }
 
     /**
      * set 1 field enable like b
      * @param view
-     * @param b
-     * @param betdetails_name
+     * @param IsEnabled
+     * @param ViewId
      */
-    private void setFieldEnabled(View view, boolean b, int id) {
-        TextView element = (TextView) view.findViewById(id);
-        element.setEnabled(b);
+    private void setFieldEnabled(View view, boolean IsEnabled, int ViewId) {
+        TextView element = (TextView) view.findViewById(ViewId);
+        element.setEnabled(IsEnabled);
     }
 
     private void fillFields(View view) {
 
         //TODO parameter übergeben
-        if (mParam1.name != null) {
+        if (mBet.name != null) {
             TextView name = (TextView) view.findViewById(R.id.betdetails_name);
 
-            name.setText(mParam1.getName());
+            name.setText(mBet.getName());
         }
         //FloatLabeledEditText container = (FloatLabeledEditText) getView().findViewById(R.id.container_name);
 
-        if (mParam1.description != null) {
+        if (mBet.description != null) {
             EditText description = (EditText) view.findViewById(R.id.betdetails_description);
-            description.setText(mParam1.getDescription());
+            description.setText(mBet.getDescription());
+        }
+
+        if(mBet.start != null){
+            EditText start = (EditText) view.findViewById(R.id.betdetails_start);
+            start.setText(mBet.getStart().toString());
+        }
+
+        if(mBet.end != null){
+            EditText end = (EditText) view.findViewById(R.id.betdetails_end);
+            end.setText(mBet.getEnd().toString());
+        }
+
+        if (!mBet.subscriber.isEmpty()){
+            EditText subscriber = (EditText) view.findViewById(R.id.betdetails_subscriber);
+            subscriber.setText(mBet.getSubscriberList());
+        }
+
+        if (mBet.deadline != null){
+            EditText deadline = (EditText) view.findViewById(R.id.betdetails_deadline);
+            deadline.setText(mBet.getDeadline().toString());
         }
     }
 
@@ -147,6 +206,11 @@ public class BetDetailsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        Toast.makeText(getActivity(),"Text bei onDataSet",Toast.LENGTH_SHORT);
     }
 
     /**
@@ -180,7 +244,7 @@ public class BetDetailsFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.action_bar_bet_add:
-                Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Neue Wette anlegen", Toast.LENGTH_SHORT).show();
 
                 Bet bet = new Bet();
                 fragmentManager.beginTransaction()
@@ -188,21 +252,21 @@ public class BetDetailsFragment extends Fragment {
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
-                Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Wette Speichern", Toast.LENGTH_SHORT).show();
                 Bet bet2 = new Bet();
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet2))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
-                Toast.makeText(getActivity(), "You selected the delete option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Wette löschen", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_container, BetItemFragment.newInstance())
                         .commit();
                 break;
             case R.id.action_bar_bet_edit:
-                Toast.makeText(getActivity(), "You selected the edit option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Wette bearbeiten", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))

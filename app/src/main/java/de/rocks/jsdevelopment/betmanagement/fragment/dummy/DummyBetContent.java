@@ -46,7 +46,6 @@ public class DummyBetContent {
         bet.setOwner("1");
         bet.setId(""+i);
 
-        //TODO Wie funktioniert Date?!
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
             bet.setDeadline(sdf.parse("21.01.2015"));

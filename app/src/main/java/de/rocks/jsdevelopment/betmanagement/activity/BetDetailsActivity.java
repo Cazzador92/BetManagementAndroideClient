@@ -16,17 +16,19 @@ import android.os.Build;
 
 import de.rocks.jsdevelopment.betmanagement.R;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 
 public class BetDetailsActivity extends Activity
-    implements BetDetailsFragment.OnFragmentInteractionListener
+    implements BetDetailsFragment.OnFragmentInteractionListener,
+        BetEditFragment.OnFragmentInteractionListener
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Übergebene Daten hollen
+        //Übergebene Daten holen
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Bet bet = (Bet) bundle.get("Bet");
@@ -35,6 +37,7 @@ public class BetDetailsActivity extends Activity
         setContentView(R.layout.activity_bet_details);
         if (savedInstanceState == null) {
             BetDetailsFragment fragment = BetDetailsFragment.newInstance(bet);
+          //  fragment.CreateSpecialTextFields();
             getFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
                     .commit();

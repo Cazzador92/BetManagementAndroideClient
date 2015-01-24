@@ -36,7 +36,7 @@
             android:id="@+id/container_start"
             >
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/betdetails_start"
@@ -44,8 +44,8 @@
                 android:inputType="date"
                 android:ems="10"
                 />
-
         </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
 
         <com.wrapp.floatlabelededittext.FloatLabeledEditText
             android:layout_width="match_parent"
@@ -128,9 +128,7 @@
                 />
 
         </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
     </RelativeLayout>
-
-
-
 
 </FrameLayout>

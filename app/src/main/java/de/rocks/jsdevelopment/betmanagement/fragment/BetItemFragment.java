@@ -101,22 +101,32 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
         switch (item.getItemId())
         {
             case R.id.action_bar_bet_add:
-                Toast.makeText(getActivity(), "You selected the camera option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Erstellen einer neuen Wette", Toast.LENGTH_SHORT).show();
 
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
-                        .commit();
+              //  fragmentManager.beginTransaction()
+                //          .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
+                //      .commit();
+                BetDetailsFragment fra = BetDetailsFragment.newInstance(new Bet());
+                //fra.showStartDateDialog(getActivity()); -> Möglichkeit 1
+
+                if (fra.getView() != null){
+                    //fra.CreateSpecialTextFields(fra.getView());
+                }
+
+                fragmentManager.beginTransaction().replace(R.id.frame_container, fra).commit();
+
+
                 break;
             case R.id.action_bar_bet_save:
-                Toast.makeText(getActivity(), "You selected the save option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Neue Wette Speichern", Toast.LENGTH_SHORT).show();
                 Bet bet = new Bet();
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
-                Toast.makeText(getActivity(), "You selected the delete option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Löschen einer Wette", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_container, BetItemFragment.newInstance())
