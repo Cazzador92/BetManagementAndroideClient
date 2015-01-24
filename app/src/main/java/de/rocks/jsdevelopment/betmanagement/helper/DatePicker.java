@@ -15,33 +15,35 @@ import de.rocks.jsdevelopment.betmanagement.R;
  */
 public class DatePicker extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
-        Calendar c = Calendar.getInstance();
-        int startYear = c.get(Calendar.YEAR);
-        int startMonth = c.get(Calendar.MONTH);
-        int startDay = c.get(Calendar.DAY_OF_MONTH);
+    Calendar c = Calendar.getInstance();
+    int startYear = c.get(Calendar.YEAR);
+    int startMonth = c.get(Calendar.MONTH);
+    int startDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // TODO Auto-generated method stub
-            // Use the current date as the default date in the picker
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, startYear, startMonth, startDay);
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        // Use the current date as the default date in the picker
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, startYear, startMonth, startDay);
 
-            return dialog;
-        }
+        return dialog;
+    }
 
-        @Override
-        public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            // TODO Auto-generated method stub
-            // Do something with the date chosen by the user
-            startYear = year;
-            startMonth = monthOfYear;
-            startDay = dayOfMonth;
-           // updateStartDateDisplay();
 
-            //TODO JF Funktioniert nicht!
-            EditText start = (EditText) view.findViewById(R.id.betdetails_start);
-            start.setText(dayOfMonth + "." + monthOfYear + "." + year);
-        }
+    @Override
+    public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear,
+                          int dayOfMonth) {
+        // TODO Auto-generated method stub
+        // Do something with the date chosen by the user
+        startYear = year;
+        startMonth = monthOfYear;
+        startDay = dayOfMonth;
+       // updateStartDateDisplay();
+
+        //TODO JF Funktioniert nicht!
+        EditText start = (EditText) getActivity().findViewById(R.id.betdetails_start);
+        String date = dayOfMonth + "." + monthOfYear + "." + year;
+        start.setText(date);
+    }
 }

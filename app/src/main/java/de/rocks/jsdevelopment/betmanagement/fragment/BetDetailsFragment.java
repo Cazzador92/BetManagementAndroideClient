@@ -32,7 +32,7 @@ import de.rocks.jsdevelopment.betmanagement.model.Bet;
  * Use the {@link de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BetDetailsFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class BetDetailsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "mBet";
 
@@ -105,6 +105,7 @@ public class BetDetailsFragment extends Fragment implements DatePickerDialog.OnD
                     Toast.makeText(getActivity(),"Get Focus",Toast.LENGTH_SHORT);
                     DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
                     dialogFragment.show(getFragmentManager(), "OpenDatePicker");
+
                 }
             }
         });
@@ -197,10 +198,10 @@ public class BetDetailsFragment extends Fragment implements DatePickerDialog.OnD
         mListener = null;
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        Toast.makeText(getActivity(),"Text bei onDataSet",Toast.LENGTH_SHORT);
-    }
+//    @Override
+//    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//        Toast.makeText(getActivity(),"Text bei onDataSet",Toast.LENGTH_SHORT);
+//    }
 
     /**
      * This interface must be implemented by activities that contain this
