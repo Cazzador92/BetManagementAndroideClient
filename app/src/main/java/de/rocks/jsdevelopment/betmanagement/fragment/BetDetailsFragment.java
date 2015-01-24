@@ -90,33 +90,22 @@ public class BetDetailsFragment extends Fragment implements DatePickerDialog.OnD
         return view;
     }
 
-    public void showStartDateDialog(Activity activity){
-        DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
-        dialogFragment.show(getFragmentManager(), "start_date_picker");
-        /*if (activity != null) {
-            DatePickerDialog dialog = new DatePickerDialog(activity, this, 2015, 01, 25);
-            dialog.show();
-        }else{
-            Toast.makeText(activity,"nix aktivity",Toast.LENGTH_SHORT);
-        }
-        */
-    }
-
 
     /**
      * Create the Datetimepicker for the start and end date of the bet.
      */
     public void CreateSpecialTextFields(View view)
     {
-        TextView start = (TextView) view.findViewById(R.id.betdetails_start);
+        EditText start = (EditText) view.findViewById(R.id.betdetails_start);
 
-        start.setOnClickListener(new View.OnClickListener() {
+        start.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"text onclick",Toast.LENGTH_SHORT);
-                DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
-                //dialogFragment.show(getFragmentManager(), "DatePicker");
-                dialogFragment.show(getFragmentManager(), "start_date_picker");
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Toast.makeText(getActivity(),"Get Focus",Toast.LENGTH_SHORT);
+                    DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
+                    dialogFragment.show(getFragmentManager(), "start_date_picker");
+                }
             }
         });
     }
