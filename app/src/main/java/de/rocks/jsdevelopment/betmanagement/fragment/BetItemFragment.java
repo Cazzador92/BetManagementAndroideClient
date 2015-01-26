@@ -106,20 +106,6 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
             case R.id.action_bar_bet_add:
                 Toast.makeText(getActivity(), "Erstellen einer neuen Wette", Toast.LENGTH_SHORT).show();
 
-
-              //  fragmentManager.beginTransaction()
-                //          .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
-                //      .commit();
-//                BetDetailsFragment fra = BetDetailsFragment.newInstance(new Bet());
-//                //fra.showStartDateDialog(getActivity()); -> Möglichkeit 1
-//
-//                if (fra.getView() != null){
-//                    //fra.CreateSpecialTextFields(fra.getView());
-//                }
-//
-//                fragmentManager.beginTransaction().replace(R.id.frame_container, fra).commit();
-
-
                 //Neue leere Wette erstellen und Activity starten
                 Intent intent = new Intent(getActivity(), BetDetailsActivity.class);
                 intent.putExtra("Bet", new Bet());
@@ -130,7 +116,7 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
                 Toast.makeText(getActivity(), "Neue Wette Speichern", Toast.LENGTH_SHORT).show();
                 Bet bet = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet, false))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
@@ -140,13 +126,13 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
                         .replace(R.id.frame_container, BetItemFragment.newInstance())
                         .commit();
                 break;
-            case R.id.action_bar_bet_edit:
-                Toast.makeText(getActivity(), "You selected the edit option", Toast.LENGTH_SHORT).show();
-
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
-                        .commit();
-                break;
+//            case R.id.action_bar_bet_edit:
+//                Toast.makeText(getActivity(), "You selected the edit option", Toast.LENGTH_SHORT).show();
+//
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
+//                        .commit();
+//                break;
             default:
                 break;
         }

@@ -43,8 +43,10 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
        // updateStartDateDisplay();
 
         EditText start = (EditText) getActivity().findViewById(R.id.betdetails_start);
-        String date = year + "." + monthOfYear + "." + dayOfMonth;
+        String date = dayOfMonth + "." + monthOfYear + "." + year ;
         start.setText(date);
+        start.clearFocus();
+
     }
 
     /**

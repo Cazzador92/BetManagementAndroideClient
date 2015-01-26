@@ -36,7 +36,7 @@ public class BetDetailsActivity extends Activity
 
         setContentView(R.layout.activity_bet_details);
         if (savedInstanceState == null) {
-            BetDetailsFragment fragment = BetDetailsFragment.newInstance(bet);
+            BetDetailsFragment fragment = BetDetailsFragment.newInstance(bet, false);
           //  fragment.CreateSpecialTextFields();
             getFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)

@@ -35,8 +35,10 @@ import de.rocks.jsdevelopment.betmanagement.model.Bet;
 public class BetDetailsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "mBet";
+    private static final String ARG_PARAM2 = "mEnabled";
 
     private Bet mBet;
+    private boolean mEnabled;
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,10 +49,11 @@ public class BetDetailsFragment extends Fragment {
      * @return A new instance of fragment bet_details.
      * @param bet
      */
-    public static BetDetailsFragment newInstance(Bet bet) {
+    public static BetDetailsFragment newInstance(Bet bet, boolean enabled) {
         BetDetailsFragment fragment = new BetDetailsFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, bet);
+        args.putSerializable(ARG_PARAM2, enabled);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,6 +68,7 @@ public class BetDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mBet = (Bet) getArguments().getSerializable(ARG_PARAM1);
+            mEnabled = (boolean) getArguments().get(ARG_PARAM2);
 
         }
     }
@@ -84,8 +88,11 @@ public class BetDetailsFragment extends Fragment {
 
         if (mBet.id != null){
             fillFields(view);
-            setFieldsEnabled(view, false);
+            //setFieldsEnabled(view, false);
         }
+
+        setFieldsEnabled(view, mEnabled);
+
 
         return view;
     }
@@ -96,7 +103,7 @@ public class BetDetailsFragment extends Fragment {
      */
     public void CreateSpecialTextFields(View view)
     {
-        EditText start = (EditText) view.findViewById(R.id.betdetails_start);
+        final EditText start = (EditText) view.findViewById(R.id.betdetails_start);
 
         start.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -105,6 +112,7 @@ public class BetDetailsFragment extends Fragment {
                     Toast.makeText(getActivity(),"Get Focus",Toast.LENGTH_SHORT);
                     DialogFragment dialogFragment = new de.rocks.jsdevelopment.betmanagement.helper.DatePicker();
                     dialogFragment.show(getFragmentManager(), "OpenDatePicker");
+                    start.setText("");
                 }
             }
         });
@@ -237,14 +245,14 @@ public class BetDetailsFragment extends Fragment {
 
                 Bet bet = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet, false))
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
                 Toast.makeText(getActivity(), "Wette Speichern", Toast.LENGTH_SHORT).show();
                 Bet bet2 = new Bet();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet2))
+                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet2, false))
                         .commit();
                 break;
             case R.id.action_bar_bet_delete:
@@ -257,9 +265,12 @@ public class BetDetailsFragment extends Fragment {
             case R.id.action_bar_bet_edit:
                 Toast.makeText(getActivity(), "Wette bearbeiten", Toast.LENGTH_SHORT).show();
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetEditFragment.newInstance("Param1", "Param2"))
+                BetDetailsFragment fragment = BetDetailsFragment.newInstance(mBet, true);
+
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, fragment)
                         .commit();
+
                 break;
             default:
                 break;
