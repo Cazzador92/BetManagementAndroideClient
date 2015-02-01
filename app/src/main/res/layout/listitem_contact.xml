@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:padding="8dp"
+        android:background="@color/list_item_bg"
+        android:weightSum="1">
+
+        <!-- Firstname -->
+
+        <!-- Lastname -->
+
+        <!-- Phone -->
+
+        <!-- isSubscriber -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/subscriber_firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/list_item_title"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:layout_weight="0.7"
+            />
+
+            <TextView
+                android:id="@+id/subscriber_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/list_item_title"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:layout_weight="0.7"
+            />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/subscriber_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/list_item_title"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:layout_weight="0.7"
+            />
+
+            <CheckBox
+                android:id="@+id/isSubscriber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
