@@ -16,12 +16,10 @@ import android.os.Build;
 
 import de.rocks.jsdevelopment.betmanagement.R;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
-import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 
 public class BetDetailsActivity extends Activity
-    implements BetDetailsFragment.OnFragmentInteractionListener,
-        BetEditFragment.OnFragmentInteractionListener
+    implements BetDetailsFragment.OnFragmentInteractionListener
 {
 
     @Override

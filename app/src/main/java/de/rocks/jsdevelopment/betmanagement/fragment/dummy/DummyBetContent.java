@@ -42,7 +42,7 @@ public class DummyBetContent {
     private static Bet createBet(int i) {
         Bet bet = new Bet();
         bet.setName("Testwette" + i);
-        bet.setDescription("Dies ist eine Testwette " + i);
+        bet.setDescription("Dies ist eine Testwette " + i + "odrfgoufasehonvfoweuigouawh are e rb vser bg dtfj nf ug js rve fva ers hjz ug njhsb gaev F GVVHS RD JHS F A SD NKGNZU JZNH BGV WEAW FGA VRSBT NJK I MUKNJ HSEVR SEC D EVRH M UMK  NTZBRT R GASRG H");
         bet.setOwner("1");
         bet.setId(""+i);
 

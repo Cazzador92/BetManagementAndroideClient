@@ -24,7 +24,6 @@ import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
 import de.rocks.jsdevelopment.betmanagement.activity.SettingsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.NavDrawerListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
-import de.rocks.jsdevelopment.betmanagement.fragment.BetEditFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
@@ -34,7 +33,6 @@ import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 public class MainActivity extends Activity
         implements
         BetDetailsFragment.OnFragmentInteractionListener,
-        BetEditFragment.OnFragmentInteractionListener,
         BetItemFragment.OnFragmentInteractionListener
 { //normal ActionBarActivity
 

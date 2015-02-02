@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.wrapp.floatlabelededittext.FloatLabeledEditText;
 
 import de.rocks.jsdevelopment.betmanagement.R;
+import de.rocks.jsdevelopment.betmanagement.activity.ContactActivity;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 
 
@@ -41,6 +42,7 @@ public class BetDetailsFragment extends Fragment {
     private boolean mEnabled;
 
     private OnFragmentInteractionListener mListener;
+    private Menu mMenu;
 
     /**
      * Use this factory method to create a new instance of
@@ -132,6 +134,15 @@ public class BetDetailsFragment extends Fragment {
         setFieldEnabled(view, IsEnabled, R.id.betdetails_description);
     }
 
+    private void setFieldsEnabled(Activity activity, boolean IsEnabled) {
+        setFieldEnabled(activity, IsEnabled, R.id.betdetails_name);
+        setFieldEnabled(activity, IsEnabled, R.id.betdetails_start);
+        setFieldEnabled(activity, IsEnabled, R.id.betdetails_end);
+        setFieldEnabled(activity, IsEnabled, R.id.betdetails_subscriber);
+        setFieldEnabled(activity, IsEnabled, R.id.betdetails_deadline);
+        setFieldEnabled(activity, IsEnabled, R.id.betdetails_description);
+    }
+
     /**
      * set 1 field enable like b
      * @param view
@@ -140,6 +151,11 @@ public class BetDetailsFragment extends Fragment {
      */
     private void setFieldEnabled(View view, boolean IsEnabled, int ViewId) {
         TextView element = (TextView) view.findViewById(ViewId);
+        element.setEnabled(IsEnabled);
+    }
+
+    private void setFieldEnabled(Activity activity, boolean IsEnabled, int ViewId) {
+        TextView element = (TextView) activity.findViewById(ViewId);
         element.setEnabled(IsEnabled);
     }
 
@@ -171,6 +187,7 @@ public class BetDetailsFragment extends Fragment {
         if (!mBet.subscriber.isEmpty()){
             EditText subscriber = (EditText) view.findViewById(R.id.betdetails_subscriber);
             subscriber.setText(mBet.getSubscriberList());
+            //subscriber.setText(ContactActivity.getkram());
         }
 
         if (mBet.deadline != null){
@@ -229,6 +246,7 @@ public class BetDetailsFragment extends Fragment {
     @Override
     public void  onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_bet_details, menu);
+        mMenu = menu;
         //return true;
     }
 
@@ -236,6 +254,7 @@ public class BetDetailsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item)
     {
         FragmentManager fragmentManager = getFragmentManager();
+        MenuInflater inflater = getActivity().getMenuInflater();
 
         //TODO nur die benötigten optionen in allen Fragmenten lassen
         switch (item.getItemId())
@@ -249,27 +268,43 @@ public class BetDetailsFragment extends Fragment {
                         .commit();
                 break;
             case R.id.action_bar_bet_save:
+
+                //TODO Wette speichern Liste, DB, ......
+
                 Toast.makeText(getActivity(), "Wette Speichern", Toast.LENGTH_SHORT).show();
-                Bet bet2 = new Bet();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetDetailsFragment.newInstance(bet2, false))
-                        .commit();
+
+                mEnabled = false;
+                setFieldsEnabled(getActivity(), mEnabled);
+
+                mMenu.clear();
+                inflater.inflate(R.menu.menu_bet_details, mMenu);
+
                 break;
             case R.id.action_bar_bet_delete:
                 Toast.makeText(getActivity(), "Wette löschen", Toast.LENGTH_SHORT).show();
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, BetItemFragment.newInstance())
-                        .commit();
+
+                //TODO löschen und zurück zur Liste springen
+
+
                 break;
             case R.id.action_bar_bet_edit:
                 Toast.makeText(getActivity(), "Wette bearbeiten", Toast.LENGTH_SHORT).show();
 
+
+                mEnabled = true;
+                setFieldsEnabled(getActivity(), mEnabled);
+
                 BetDetailsFragment fragment = BetDetailsFragment.newInstance(mBet, true);
 
-                getFragmentManager().beginTransaction()
-                        .add(R.id.container, fragment)
-                        .commit();
+ //               // funktioniert auch. Dabei wird ein neues Fragment erstellt und das alte damit ersetzt.
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.container, fragment)
+//                        .commit();
+
+                mMenu.clear();
+                inflater.inflate(R.menu.menu_bet_edit, mMenu);
+
 
                 break;
             default:
