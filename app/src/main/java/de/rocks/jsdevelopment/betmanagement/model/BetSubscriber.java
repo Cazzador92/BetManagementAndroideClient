@@ -19,6 +19,7 @@ public class BetSubscriber
     public String name;
     public String mail;
     public String tel;
+    public String mFirstname;
 
     @Override
     public String toString() {
