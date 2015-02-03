@@ -58,20 +58,20 @@ public class SubscriberListAdapter extends BaseAdapter {
 
             //TODO diese funktion setzt für das eine Item die Werte rein und gibt das View zurück
 
-//            TextView name = (TextView) convertView.findViewById(R.id.bet_name);
+            TextView name = (TextView) convertView.findViewById(R.id.list_item_subscriber_name);
 //            TextView subscriber = (TextView) convertView.findViewById(R.id.bet_subscriber);
 //            TextView start = (TextView) convertView.findViewById(R.id.bet_start);
 //            TextView end = (TextView) convertView.findViewById(R.id.bet_end);
 
             //TODO ergänzen
-//            BetSubscriber subscriber = subscriberItems.get(position);
+            BetSubscriber subscriber = subscriberItems.get(position);
 //
-//            name.setText(subscriber.getName());
+            name.setText(subscriber.getName());
 //            //subscriber.setText(subscriber.);
 //            start.setText("21.01.2015");
 //            end.setText("25.01.2015");
 
             return convertView;
-        } 
+        }
 
 }

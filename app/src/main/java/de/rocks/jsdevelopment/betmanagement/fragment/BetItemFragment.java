@@ -28,8 +28,6 @@ import de.rocks.jsdevelopment.betmanagement.model.Bet;
 
 public class BetItemFragment extends Fragment implements AdapterView.OnItemClickListener{
 
-    //TODO 1 Click auf die Elemente soll die BetDetailsActivity aufrufen und das Element übergeben
-
     //TODO 3 langer click später
 
 
@@ -37,6 +35,7 @@ public class BetItemFragment extends Fragment implements AdapterView.OnItemClick
 
     // wird vielleicht später gebraucht
     //private ProgressDialog pDialog;
+
     private List<Bet> betList = new ArrayList<Bet>();
     private ListView listView;
     private BetListAdapter adapter;

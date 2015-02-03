@@ -1,5 +1,6 @@
 package de.rocks.jsdevelopment.betmanagement;
 
+//region imports
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -28,13 +29,15 @@ import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
-
+//endregion
 
 public class MainActivity extends Activity
         implements
         BetDetailsFragment.OnFragmentInteractionListener,
         BetItemFragment.OnFragmentInteractionListener
-{ //normal ActionBarActivity
+{
+
+    //region Variables
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -52,7 +55,9 @@ public class MainActivity extends Activity
 
     static final int PICK_BET_REQUEST = 0;
 
+    //endregion
 
+    //region Lifecycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,33 +66,30 @@ public class MainActivity extends Activity
         CreateSlidingMenu(savedInstanceState);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+    //endregion
+
+    //region onClickListener  for Fragments
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        //anlage oder bearbeitung von wetten.
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
+    public void onFragmentInteraction(Bet item) {
+        //Toast.makeText(this, "main", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, BetDetailsActivity.class);
+        intent.putExtra("Bet", item);
+        startActivity(intent);
     }
+    //endregion
+
+    //region NavigationDrawer
 
     private void CreateSlidingMenu(Bundle savedInstanceState) {
 
@@ -150,32 +152,6 @@ public class MainActivity extends Activity
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        //anlage oder bearbeitung von wetten.
-    }
-
-    @Override
-    public void onFragmentInteraction(Bet item) {
-        //Toast.makeText(this, "main", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, BetDetailsActivity.class);
-        intent.putExtra("Bet", item);
-        startActivity(intent);
-    }
-
-//    protected void onActivityResult(int requestCode, int resultCode,
-//                                    Intent data) {
-//        if (requestCode == PICK_BET_REQUEST) {
-//            if (resultCode == RESULT_OK) {
-//                // A contact was picked.  Here we will just display it
-//                // to the user.
-//                data.getExtras();
-//            }
-//        }
-//    }
-
-
-
     /**
      * Slide menu item click listener
      * */
@@ -226,6 +202,35 @@ public class MainActivity extends Activity
             Log.e("MainActivity", "Error in creating fragment for case " + position);
         }
     }
+    //endregion
+
+    //region OptionsMenu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        // toggle nav drawer on selecting action bar app icon/title
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -236,18 +241,14 @@ public class MainActivity extends Activity
 
         return super.onPrepareOptionsMenu(menu);
     }
+    //endregion
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
+    //region Settings
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+    //endregion
 }

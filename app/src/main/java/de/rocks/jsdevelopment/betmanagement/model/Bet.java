@@ -198,9 +198,13 @@ public class Bet
         String subscriberList = "";
 
         for (int i = 0; i < subscriber.size(); i++){
-            subscriberList += subscriber.get(i).toString();
+            subscriberList += subscriber.get(i).getName().toString() + "; ";
         }
         return subscriberList;
+    }
+
+    public BetSubscriber getSubscriber(int position) {
+        return subscriber.get(position);
     }
 
     /**
@@ -229,6 +233,8 @@ public class Bet
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 
 //    @Override
 //    public int describeContents() {
