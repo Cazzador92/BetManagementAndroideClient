@@ -31,6 +31,7 @@ import de.rocks.jsdevelopment.betmanagement.activity.ContactActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.BetListAdapter;
 import de.rocks.jsdevelopment.betmanagement.adapter.SubscriberListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.dummy.DummyBetContent;
+import de.rocks.jsdevelopment.betmanagement.helper.Util;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 //endregion
 
@@ -49,14 +50,19 @@ public class BetDetailsFragment extends Fragment implements AdapterView.OnItemCl
     private static final String ARG_PARAM1 = "mBet";
     private static final String ARG_PARAM2 = "mEnabled";
 
-    private Bet mBet;
-    private boolean mEnabled;
+    protected Bet mBet;
+    protected boolean mEnabled;
 
-    private OnFragmentInteractionListener mListener;
-    private Menu mMenu;
+    protected OnFragmentInteractionListener mListener;
+    protected Menu mMenu;
 
-    private ListView listView;
-    private SubscriberListAdapter adapter;
+    protected ListView listView;
+    protected SubscriberListAdapter adapter;
+
+    //region Getter Setter
+    public boolean isEditEnabled(){ return mEnabled; }
+    //endregion
+
     //endregion
 
     //region Constructor
@@ -119,6 +125,8 @@ public class BetDetailsFragment extends Fragment implements AdapterView.OnItemCl
         listView = (ListView) view.findViewById(R.id.subscriber_container);
         adapter = new SubscriberListAdapter(activity, mBet.getSubscriber());
         listView.setAdapter(adapter);
+
+        Util.setListViewHeightBasedOnItems(listView);
 
         listView.setOnItemClickListener(this);
 
@@ -279,7 +287,9 @@ public class BetDetailsFragment extends Fragment implements AdapterView.OnItemCl
         setFieldEnabled(view, IsEnabled, R.id.betdetails_name);
         setFieldEnabled(view, IsEnabled, R.id.betdetails_start);
         setFieldEnabled(view, IsEnabled, R.id.betdetails_end);
-        setFieldEnabled(view, IsEnabled, R.id.betdetails_subscriber);
+
+        //setFieldEnabled(view, IsEnabled, R.id.listview_subscriber_container);
+
         setFieldEnabled(view, IsEnabled, R.id.betdetails_deadline);
         setFieldEnabled(view, IsEnabled, R.id.betdetails_description);
     }
@@ -288,7 +298,10 @@ public class BetDetailsFragment extends Fragment implements AdapterView.OnItemCl
         setFieldEnabled(activity, IsEnabled, R.id.betdetails_name);
         setFieldEnabled(activity, IsEnabled, R.id.betdetails_start);
         setFieldEnabled(activity, IsEnabled, R.id.betdetails_end);
-        setFieldEnabled(activity, IsEnabled, R.id.betdetails_subscriber);
+
+        //TODO onClickListener setzen/löschen beim editieren
+        //setFieldEnabled(activity, IsEnabled, R.id.listview_subscriber_container);
+
         setFieldEnabled(activity, IsEnabled, R.id.betdetails_deadline);
         setFieldEnabled(activity, IsEnabled, R.id.betdetails_description);
     }
@@ -334,12 +347,6 @@ public class BetDetailsFragment extends Fragment implements AdapterView.OnItemCl
             end.setText(mBet.getEnd().toString());
         }
 
-        if (!mBet.subscriber.isEmpty()){
-            EditText subscriber = (EditText) view.findViewById(R.id.betdetails_subscriber);
-            subscriber.setText(mBet.getSubscriberList());
-            //subscriber.setText(ContactActivity.getkram());
-        }
-
         if (mBet.deadline != null){
             EditText deadline = (EditText) view.findViewById(R.id.betdetails_deadline);
             deadline.setText(mBet.getDeadline().toString());
@@ -353,9 +360,6 @@ public class BetDetailsFragment extends Fragment implements AdapterView.OnItemCl
 //            mListener.onFragmentInteraction(uri);
 //        }
 //    }
-
-
-
 
     /**
      * Listener for Subscriber Items

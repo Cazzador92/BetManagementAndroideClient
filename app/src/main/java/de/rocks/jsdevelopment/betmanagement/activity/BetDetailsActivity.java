@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Toast;
 
 import de.rocks.jsdevelopment.betmanagement.R;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
@@ -21,6 +22,9 @@ import de.rocks.jsdevelopment.betmanagement.model.Bet;
 public class BetDetailsActivity extends Activity
     implements BetDetailsFragment.OnFragmentInteractionListener
 {
+
+    private BetDetailsFragment fragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class BetDetailsActivity extends Activity
 
         setContentView(R.layout.activity_bet_details);
         if (savedInstanceState == null) {
-            BetDetailsFragment fragment = BetDetailsFragment.newInstance(bet, false);
+            fragment = BetDetailsFragment.newInstance(bet, false);
           //  fragment.CreateSpecialTextFields();
             getFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
@@ -56,5 +60,12 @@ public class BetDetailsActivity extends Activity
 
     private void setResult(){
 
+    }
+
+    public void deleteSubscriberItem(View view) {
+        if (fragment.isEditEnabled()){
+            Toast.makeText(this, "Löschen angeklickt", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

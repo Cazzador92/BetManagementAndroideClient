@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO ListItems hinzufügen -->
+    <!-- TODO ListItems ergänzen -->
     <TextView
         android:id="@+id/list_item_subscriber_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:textColor="@color/list_item_title"
         android:textSize="@dimen/title"
         android:textStyle="bold"
         android:layout_weight="0.7"
+        android:background="@color/list_item_bg"
+        />
+
+    <!-- TODO Button nur dann anzeigen wenn wir editierenkönnen -->
+    <!-- TODO Button schön machen -->
+    <!-- TODO Button zum hinzufügen von Benutzern erstellen -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="deleteSubscriberItem"
+
         />
 </LinearLayout>
