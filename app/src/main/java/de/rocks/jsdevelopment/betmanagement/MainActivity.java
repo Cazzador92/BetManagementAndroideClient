@@ -22,10 +22,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsActivity;
+import de.rocks.jsdevelopment.betmanagement.activity.BetDetailsGruppenActivity;
 import de.rocks.jsdevelopment.betmanagement.activity.SettingsActivity;
 import de.rocks.jsdevelopment.betmanagement.adapter.NavDrawerListAdapter;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsGruppenFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragmentGruppen;
 import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
@@ -34,7 +37,8 @@ import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 public class MainActivity extends Activity
         implements
         BetDetailsFragment.OnFragmentInteractionListener,
-        BetItemFragment.OnFragmentInteractionListener
+        BetItemFragment.OnFragmentInteractionListener,
+        BetItemFragmentGruppen.OnBetItemClickListener
 {
 
     //region Variables
@@ -87,6 +91,15 @@ public class MainActivity extends Activity
         intent.putExtra("Bet", item);
         startActivity(intent);
     }
+
+
+    @Override
+    public void onBetClickedGruppen(Bet item) {
+        Intent intent = new Intent(MainActivity.this, BetDetailsGruppenActivity.class);
+        intent.putExtra("Bet", item);
+        startActivity(intent);
+    }
+
     //endregion
 
     //region NavigationDrawer
@@ -152,6 +165,7 @@ public class MainActivity extends Activity
 
     }
 
+
     /**
      * Slide menu item click listener
      * */
@@ -179,6 +193,12 @@ public class MainActivity extends Activity
                 fragment = BetItemFragment.newInstance();
                 break;
             case 2:
+                // Testen der SettingsActivity zu benutzen
+                //todo liste laden und details bearbeiten sodass die wie settings aussehen.
+                fragment = BetItemFragmentGruppen.newInstance();
+                //Toast.makeText(this, "maintestseite", Toast.LENGTH_SHORT).show();
+                break;
+            case 3:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
             default:

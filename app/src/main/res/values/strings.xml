@@ -30,4 +30,8 @@
     <string name="betdetails_label_subscriber">Subscriber</string>
     <string name="betdetails_label_deadline">Deadline</string>
     <string name="betdetails_label_description">Description</string>
+
+    <!--Menu Umbau-->
+    <string name="nav_betsTestUmstellung">Testseite</string>
+    <string name="pref_bet_name">Betname</string>
 </resources>
