@@ -140,20 +140,6 @@
                     />
 
             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
-
-            <android.inputmethodservice.ExtractEditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New ExtractEditText"
-                android:id="@+id/extractEditText"
-                android:layout_below="@+id/container_description"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-
-
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>
