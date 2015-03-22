@@ -35,7 +35,6 @@ import de.rocks.jsdevelopment.betmanagement.model.Bet;
  */
 public class BetDetailsGruppenFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-
     //region Variables
     private static final String ARG_PARAM1 = "mBet";
     private static final String ARG_PARAM2 = "mEnabled";

@@ -25,7 +25,6 @@ public class BetDetailsActivity extends Activity
 
     private BetDetailsFragment fragment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

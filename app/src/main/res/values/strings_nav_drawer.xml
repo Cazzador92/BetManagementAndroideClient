@@ -10,6 +10,7 @@
         <item>@string/nav_home</item>
         <item>@string/nav_bets</item>
         <item>@string/nav_betsTestUmstellung</item>
+        <item>@string/nav_SQLiteTest</item>
         <item>@string/nav_settings</item>
     </string-array>
 

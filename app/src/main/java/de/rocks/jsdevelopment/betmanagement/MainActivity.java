@@ -30,6 +30,7 @@ import de.rocks.jsdevelopment.betmanagement.fragment.BetDetailsGruppenFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragment;
 import de.rocks.jsdevelopment.betmanagement.fragment.BetItemFragmentGruppen;
 import de.rocks.jsdevelopment.betmanagement.fragment.HomeFragment;
+import de.rocks.jsdevelopment.betmanagement.fragment.SQLiteFragment;
 import de.rocks.jsdevelopment.betmanagement.model.Bet;
 import de.rocks.jsdevelopment.betmanagement.model.NavDrawerItem;
 //endregion
@@ -199,6 +200,9 @@ public class MainActivity extends Activity
                 //Toast.makeText(this, "maintestseite", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
+                fragment = new SQLiteFragment().newInstance();
+                break;
+            case 4:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
             default:

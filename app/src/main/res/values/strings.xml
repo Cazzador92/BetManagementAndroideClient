@@ -34,4 +34,7 @@
     <!--Menu Umbau-->
     <string name="nav_betsTestUmstellung">Testseite</string>
     <string name="pref_bet_name">Betname</string>
+    <string name="nav_SQLiteTest">SQLite Testseite</string>
+    <string name="NewValue">Neuer Datenbankeintrag</string>
+
 </resources>
